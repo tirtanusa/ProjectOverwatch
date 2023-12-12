@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/basicbg"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/view_container"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginTop="65dp">
+
+    </FrameLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_marginTop="65dp"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        class = "com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/gmaps"
+        android:name="com.google.android.gms.maps.SupportMapFragment">
+    </androidx.fragment.app.FragmentContainerView>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    />
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:src="@drawable/logo"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/logo"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="8dp"
+        android:textSize="17sp"
+        android:text="O V E R W A T C H"
+        android:textColor="@color/teks"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/report"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_width="90dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded_corner"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/report"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="38dp"
+        android:layout_marginLeft="22dp"
+        />
+
+    <TextView
+        android:id="@+id/maps"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_corner" />
+
+    <ImageView
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/map"
+        android:layout_marginBottom="38dp"
+        />
+
+    <TextView
+        android:id="@+id/setting"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_width="90dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded_corner"
+        />
+
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/settings"
+        android:layout_marginBottom="38dp"
+        android:layout_marginRight="22dp"
+        />
+
+
+</RelativeLayout>

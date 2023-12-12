@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="basicbg">#121212</color>
+    <color name="teks">#EEEEEE</color>
+    <color name="bgbtn">#1B2C3C</color>
+    <color name="textbtn">#74C0FC</color>
+    <color name="bgprofile">#1F1F1F</color>
+    <color name="primary_black">#0E0E10</color>
+    <color name="grey">#B8B8B8</color>
+    <color name="button_background">#292929</color>
+    <color name="hint_color">#737373</color>
+    <color name="background">#0E0E10</color>
+    <color name="ujunginput">#121212</color>
+    <color name="ujungicon">#26252C</color>
+    <color name="forget">#9BD2FD</color>
+    <color name="buttonlogin">#1B2C3C</color>
+    <color name="tulislogin">#74C0FC</color>
+</resources>

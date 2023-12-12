@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:alpha="0.98">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="LOG IN"
+        android:textSize="45dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
+
+    <ImageView
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/ujungbulat"
+        android:alpha="1.5"
+        />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="80dp"
+        android:src="@drawable/ujungicon"
+        android:alpha="1.5"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginLeft="90dp"
+        android:src="@drawable/email" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="208dp"
+        android:layout_marginLeft="150dp"
+        android:text="Lorem@Gmail.com"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        />
+
+    <ImageView
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="280dp"
+        android:src="@drawable/ujungbulat"
+        android:alpha="1.5" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="80dp"
+        android:src="@drawable/ujungicon"
+        android:alpha="1.5"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="205dp"
+        android:layout_marginLeft="90dp"
+        android:src="@drawable/gembok" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="289dp"
+        android:layout_marginLeft="150dp"
+        android:text="Ipsum"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginLeft="209dp"
+        android:text="Forgot Password?"
+        android:textSize="15dp"
+        android:textColor="@color/forget"
+        />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginLeft="209dp"
+        android:text="_________________"
+        android:textSize="15dp"
+        android:textColor="@color/forget"
+        />
+
+    <ImageView
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:src="@drawable/buttonlogin" />
+
+    <TextView
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="410dp"
+        android:layout_marginLeft="175dp"
+        android:text="LOGIN"
+        android:textSize="20dp"
+        android:textColor="@color/tulislogin"
+        />
+
+    <ImageView
+        android:layout_width="235dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="430dp"
+        android:src="@drawable/garis"
+        />
+
+
+    <TextView
+        android:id="@+id/login1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Haven’t make an account yet ? "
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="580dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Sign Up here"
+        android:textColor="@color/tulislogin"
+        android:textStyle="bold"
+        android:layout_below="@+id/login1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="_____________"
+        android:textColor="@color/tulislogin"
+        android:textStyle="bold"
+        android:layout_below="@+id/login1"/>
+</RelativeLayout>

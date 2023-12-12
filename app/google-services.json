@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "754156443088",
+    "project_id": "projek-pmob---bagian-main",
+    "storage_bucket": "projek-pmob---bagian-main.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754156443088:android:6bc26bdc7e7eb8cdbe55d5",
+        "android_client_info": {
+          "package_name": "com.example.projekpmob_bagianmain"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcO4KbwPzujthBvRUkTyln-mUfNGljUqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

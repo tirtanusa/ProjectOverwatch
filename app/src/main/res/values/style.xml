@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Lexend">
+        <item name="android:fontFamily">Lex</item> <!-- Font family -->
+        <item name="android:textSize">18sp</item> <!-- Font size -->
+        <item name="android:textColor">#FFFFFF</item> <!-- Text color -->
+        <!-- Add more attributes as needed -->
+    </style>
+
+</resources>

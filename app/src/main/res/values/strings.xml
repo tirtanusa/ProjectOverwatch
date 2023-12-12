@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Projek PMOB - Bagian Main</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="my_map_api_key">AIzaSyA337K6k1bvlVAQs1Yh2M7J3x8PE-8c1WI</string>
+</resources>
