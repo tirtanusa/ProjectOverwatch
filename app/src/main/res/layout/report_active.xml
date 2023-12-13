@@ -37,47 +37,48 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="65dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/maps"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Footer icons -->
-    <ImageView
-        android:id="@+id/maps"
-        android:layout_width="148dp"
-        android:layout_height="76dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/round_edge"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="15dp"
-        android:src="@drawable/mapactive"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/maps"-->
+<!--        android:layout_width="148dp"-->
+<!--        android:layout_height="76dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:background="@drawable/round_edge"-->
+<!--        android:paddingHorizontal="12dp"-->
+<!--        android:paddingVertical="15dp"-->
+<!--        android:src="@drawable/mapactive"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
-    <ImageView
-        android:id="@+id/report"
-        android:layout_width="94dp"
-        android:layout_height="76dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button_kiri"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="15dp"
-        android:src="@drawable/reportactive"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/report"-->
+<!--        android:layout_width="94dp"-->
+<!--        android:layout_height="76dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:background="@drawable/button_kiri"-->
+<!--        android:paddingHorizontal="12dp"-->
+<!--        android:paddingVertical="15dp"-->
+<!--        android:src="@drawable/reportactive"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <ImageView
-        android:id="@+id/account"
-        android:layout_width="94dp"
-        android:layout_height="76dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button_kanan"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="15dp"
-        android:src="@drawable/user_settings"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/account"-->
+<!--        android:layout_width="94dp"-->
+<!--        android:layout_height="76dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:background="@drawable/button_kanan"-->
+<!--        android:paddingHorizontal="12dp"-->
+<!--        android:paddingVertical="15dp"-->
+<!--        android:src="@drawable/user_settings"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
