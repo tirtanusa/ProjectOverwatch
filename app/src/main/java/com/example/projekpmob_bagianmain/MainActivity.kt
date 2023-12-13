@@ -46,6 +46,11 @@ import android.widget.Toast
             switchToReportFragment()
         }
 
+        val map = findViewById<TextView>(R.id.maps)
+        map.setOnClickListener {
+            switchView(R.layout.activity_main)
+        }
+
         val setting = findViewById<TextView>(R.id.setting)
         setting.setOnClickListener{
             switchView(R.layout.user_setting)
