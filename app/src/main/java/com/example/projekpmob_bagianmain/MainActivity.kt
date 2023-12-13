@@ -50,7 +50,7 @@ import android.widget.Toast
         map.setOnClickListener {
             switchView(R.layout.activity_main)
         }
-
+        //set map View
         val setting = findViewById<TextView>(R.id.setting)
         setting.setOnClickListener{
             switchView(R.layout.user_setting)
