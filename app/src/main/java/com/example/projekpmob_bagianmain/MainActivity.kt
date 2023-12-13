@@ -45,6 +45,11 @@ import android.widget.Toast
             switchView(R.layout.report_active)
             switchToReportFragment()
         }
+
+        val setting = findViewById<TextView>(R.id.setting)
+        setting.setOnClickListener{
+            switchView(R.layout.user_setting)
+        }
         // Set default view
         if (savedInstanceState == null) {
             switchView(R.layout.activity_main)
