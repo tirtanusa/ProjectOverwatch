@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_black"
-    tools:context=".MainActivity">
+    android:background="@color/primary_black">
 
     <TextView
         android:id="@+id/overwatch"
@@ -62,7 +61,7 @@
         android:id="@+id/imageView4"
         android:layout_width="88dp"
         android:layout_height="81dp"
-        android:layout_marginBottom="152dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/round_edge"
         android:paddingHorizontal="12dp"
         android:paddingVertical="15dp"
@@ -76,49 +75,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="18dp"
-        android:layout_marginBottom="120dp"
         android:fontFamily="@font/lexendgiga"
         android:text="Post A Report"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <ImageView
-        android:id="@+id/maps"
-        android:layout_width="148dp"
-        android:layout_height="76dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/round_edge"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="15dp"
-        android:src="@drawable/mapactive"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <ImageView
-        android:id="@+id/report"
-        android:layout_width="94dp"
-        android:layout_height="76dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button_kiri"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="15dp"
-        android:src="@drawable/reportactive"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <ImageView
-        android:id="@+id/account"
-        android:layout_width="94dp"
-        android:layout_height="76dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/button_kanan"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="15dp"
-        android:src="@drawable/user_settings"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
 

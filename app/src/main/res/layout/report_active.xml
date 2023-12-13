@@ -1,84 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_black"
+    android:background="@color/basicbg"
     tools:context=".MainActivity">
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="40dp"-->
-<!--        android:fontFamily="@font/lexendgiga"-->
-<!--        android:text="OVERWATCH"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.606"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/fragment_container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="108dp"-->
-<!--        android:layout_marginTop="32dp"-->
-<!--        android:src="@drawable/logo"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!-- RecyclerView added here to replace individual TextViews for reports -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewReport"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="65dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_marginBottom="240dp"
+        android:layout_centerHorizontal="true" />
 
-    <!-- Footer icons -->
-<!--    <ImageView-->
-<!--        android:id="@+id/maps"-->
-<!--        android:layout_width="148dp"-->
-<!--        android:layout_height="76dp"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:background="@drawable/round_edge"-->
-<!--        android:paddingHorizontal="12dp"-->
-<!--        android:paddingVertical="15dp"-->
-<!--        android:src="@drawable/mapactive"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/report"-->
-<!--        android:layout_width="94dp"-->
-<!--        android:layout_height="76dp"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:background="@drawable/button_kiri"-->
-<!--        android:paddingHorizontal="12dp"-->
-<!--        android:paddingVertical="15dp"-->
-<!--        android:src="@drawable/reportactive"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/account"-->
-<!--        android:layout_width="94dp"-->
-<!--        android:layout_height="76dp"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:background="@drawable/button_kanan"-->
-<!--        android:paddingHorizontal="12dp"-->
-<!--        android:paddingVertical="15dp"-->
-<!--        android:src="@drawable/user_settings"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent" />-->
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/postReportButton"
+        android:layout_width="88dp"
+        android:layout_height="81dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_edge"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="15dp"
+        android:src="@drawable/plus" />
+</RelativeLayout>

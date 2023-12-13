@@ -6,29 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/basicbg"
     tools:context=".MainActivity">
-
-    <FrameLayout
-        android:id="@+id/view_container"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_marginTop="65dp">
-
-    </FrameLayout>
-
     <androidx.fragment.app.FragmentContainerView
-        android:layout_marginTop="65dp"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        class = "com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/gmaps"
-        android:name="com.google.android.gms.maps.SupportMapFragment">
-    </androidx.fragment.app.FragmentContainerView>
-
-    <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    />
+        android:layout_height="550dp"
+        android:layout_marginTop="65dp"
+        android:background="@color/basicbg"/>
 
 
     <ImageView

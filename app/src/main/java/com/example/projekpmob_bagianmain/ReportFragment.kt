@@ -6,13 +6,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projekpmob_bagianmain.databinding.ReportActiveBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.ArrayList
-
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.maps.SupportMapFragment
 
 class ReportFragment : Fragment() {
 
@@ -30,6 +36,11 @@ class ReportFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+
+        val postReportButton = view.findViewById<ImageView>(R.id.postReportButton)
+        postReportButton.setOnClickListener {
+            goToPostReportFragment()
+        }
     }
 
     private fun getNotificationsFromFirestore() {
@@ -37,21 +48,32 @@ class ReportFragment : Fragment() {
         firestore.collection("report")
             .get()
             .addOnSuccessListener { documents ->
-                val notificationList = ArrayList<Report>()
-                for (document in documents) {
-                    val notification = document.toObject(Report::class.java)
-                    notificationList.add(notification)
+                if (isAdded) { // Periksa apakah fragment masih terhubung ke activity
+                    val notificationList = ArrayList<Report>()
+                    for (document in documents) {
+                        val notification = document.toObject(Report::class.java)
+                        notificationList.add(notification)
+                    }
+                    updateRecyclerView(notificationList)
                 }
-                updateRecyclerView(notificationList)
             }
-            .addOnFailureListener { exception ->
-                Log.w("ReportFragment", "Error getting documents: ", exception)
-            }
+
+    }
+
+    private fun goToPostReportFragment() {
+        // Ganti ReportFragment dengan PostReportFragment
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, PostReportFragment())
+            .addToBackStack(null)
+            .commit()
+        Log.d("Report Fragment","Fragment Post Kebuka")
     }
 
     private fun updateRecyclerView(notificationList: List<Report>) {
-        val adapter = binding.recyclerViewReport.adapter as NotificationAdapter
-        adapter.updateData(notificationList)
+        binding?.let {
+            val adapter = it.recyclerViewReport.adapter as? NotificationAdapter
+            adapter?.updateData(notificationList)
+        }
     }
 
     private fun setupRecyclerView() {

@@ -2,6 +2,7 @@
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
@@ -21,6 +22,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.util.Log
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.Toast
 
 
@@ -34,7 +36,9 @@ import android.widget.Toast
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.gmaps) as SupportMapFragment
+//        val mapFragment = supportFragmentManager.findFragmentById(R.id.gmaps) as SupportMapFragment
+//        mapFragment.getMapAsync(this)
+        val mapFragment = SupportMapFragment.newInstance()
         mapFragment.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -42,30 +46,34 @@ import android.widget.Toast
 
         val report = findViewById<TextView>(R.id.report)
         report.setOnClickListener {
-            switchView(R.layout.report_active)
-            switchToReportFragment()
+            replaceFragment(ReportFragment())
         }
 
         val map = findViewById<TextView>(R.id.maps)
         map.setOnClickListener {
-            switchView(R.layout.activity_main)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, mapFragment)
+                .addToBackStack(null)
+                .commit()
         }
         //set map View
         val setting = findViewById<TextView>(R.id.setting)
         setting.setOnClickListener{
-            switchView(R.layout.user_setting)
+            replaceFragment(SettingFragment())
         }
+
         // Set default view
         if (savedInstanceState == null) {
-            switchView(R.layout.activity_main)
+            supportFragmentManager.beginTransaction()
+                .add(R.id.fragment_container, mapFragment)
+                .commit()
         }
     }
 
 
-    private fun switchToReportFragment() {
-        val reportFragment = ReportFragment()
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, reportFragment)
+            .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
     }
@@ -73,7 +81,7 @@ import android.widget.Toast
 
     private fun showMapFragment() {
         Log.d("MainActivivty","ShowingMapFragment")
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.gmaps) as? SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? SupportMapFragment
         mapFragment?.let {
             supportFragmentManager.beginTransaction().show(it).commit()
         }
@@ -81,25 +89,9 @@ import android.widget.Toast
 
     private fun hideMapFragment() {
         Log.d("MainActivity","HidingMapFragment")
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.gmaps) as? SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? SupportMapFragment
         mapFragment?.let {
             supportFragmentManager.beginTransaction().hide(it).commit()
-        }
-    }
-
-    private fun switchView(layoutId: Int) {
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.gmaps) as? SupportMapFragment
-        val viewContainer = findViewById<FrameLayout>(R.id.fragment_container)
-
-        if (layoutId == R.layout.activity_main) {
-            mapFragment?.let { supportFragmentManager.beginTransaction().show(it).commit() }
-            viewContainer.visibility = View.GONE
-        } else {
-            mapFragment?.let { supportFragmentManager.beginTransaction().hide(it).commit() }
-            viewContainer.visibility = View.VISIBLE
-            viewContainer.removeAllViews()
-            val newView = layoutInflater.inflate(layoutId, viewContainer, false)
-            viewContainer.addView(newView)
         }
     }
 
@@ -215,29 +207,3 @@ import android.widget.Toast
         }
     }
 }
-
-//    class ReportFragment : Fragment() {
-//        override fun onCreateView(
-//            inflater: LayoutInflater, container: ViewGroup?,
-//            savedInstanceState: Bundle?
-//        ): View? {
-//            return inflater.inflate(R.layout.report_active, container, false)
-//        }
-//    }
-//
-//    class MapFragment : Fragment() {
-//        override fun onCreateView(
-//            inflater: LayoutInflater, container: ViewGroup?,
-//            savedInstanceState: Bundle?
-//        ): View? {
-//            return inflater.inflate(R.layout.activity_main, container, false)
-//        }
-//    }
-//
-//    class SettingFragment : Fragment() {
-//        override fun onCreateView(
-//            inflater: LayoutInflater, container: ViewGroup?,
-//            savedInstanceState: Bundle?
-//        ): View? {
-//            return inflater.inflate(R.layout.user_setting, container, false)
-//        }
