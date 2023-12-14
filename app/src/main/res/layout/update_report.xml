@@ -4,18 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_black"
+    android:background="@color/basicbg"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewReport"
-        android:layout_width="411dp"
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerViewReport"-->
+<!--        android:layout_width="411dp"-->
+<!--        android:layout_height="190dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:paddingHorizontal="30dp"-->
+<!--        android:paddingTop="10dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/loremipsum" />-->
+    <TextView
+        android:id="@+id/isiReportSebelum"
+        android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:fontFamily="@font/lexendgiga"
+        app:layout_constraintTop_toBottomOf="@id/loremipsum"
         android:paddingHorizontal="30dp"
-        android:paddingTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loremipsum" />
+        android:paddingTop="10dp"/>
 
     <!--    <androidx.appcompat.widget.AppCompatButton-->
 <!--        android:id="@+id/myCheckBox"-->

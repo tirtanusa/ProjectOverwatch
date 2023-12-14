@@ -4,4 +4,5 @@ data class Report(val headerReport : String = "",
                   val isiReport : String = "",
                   val user: String ="",
                   val timestamp: String ="",
-                  val status: Boolean = false)
+                  val status: Boolean = false,
+                  val docID: String="")

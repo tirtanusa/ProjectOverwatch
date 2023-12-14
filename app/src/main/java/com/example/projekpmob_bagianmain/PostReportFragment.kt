@@ -41,7 +41,7 @@ class PostReportFragment : Fragment(){
     private fun submitReport() {
         var isiReport = view?.findViewById<EditText>(R.id.reportColumn)?.text.toString()
         // Membuat header report dengan tanggal dan waktu saat ini
-        val timeFormat= SimpleDateFormat("yyyy-MM-dd HH:MM:SS",Locale.getDefault())
+        val timeFormat= SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault())
         val timeStamp = timeFormat.format(Date())
         val tanggalWaktu = Date()
         var pisahWaktu = timeFormat.format(tanggalWaktu)
@@ -50,13 +50,16 @@ class PostReportFragment : Fragment(){
         val waktu = partisi[1]
         val headerReport = "Laporan pada $tanggal"
         isiReport = "$waktu - $isiReport"
-        // Membuat objek Report
-        val report = Report(headerReport, isiReport,"Admin",timeStamp)
+
 
         // Kirim objek Report ke Firestore
         val firestore = Firebase.firestore
-        firestore.collection("report")
-            .add(report)
+        val newReportRef = firestore.collection("report").document()
+        val idGenerate = newReportRef.id
+        // Membuat objek Report
+        val report = Report(headerReport, isiReport,"Admin",timeStamp,false,idGenerate)
+        firestore.collection("report").document(idGenerate)
+            .set(report)
             .addOnSuccessListener {
                 // Handle ketika sukses
                 Log.d("Success","Laporan berhasil dikirim")
