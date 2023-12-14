@@ -127,7 +127,7 @@ import android.widget.Toast
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 mGoogleMap?.isMyLocationEnabled = true
             } else {
-                Toast.makeText(this,"Permintaan Access Ditolak", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Permintaan Ditolak", Toast.LENGTH_SHORT).show()
             }
         }
     }
