@@ -19,6 +19,7 @@ import com.google.firebase.ktx.Firebase
 import java.util.ArrayList
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.firebase.firestore.Query
 
 class ReportFragment : Fragment() {
 
@@ -46,6 +47,7 @@ class ReportFragment : Fragment() {
     private fun getNotificationsFromFirestore() {
         val firestore = Firebase.firestore
         firestore.collection("report")
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { documents ->
                 if (isAdded) { // Periksa apakah fragment masih terhubung ke activity
@@ -54,6 +56,7 @@ class ReportFragment : Fragment() {
                         val notification = document.toObject(Report::class.java)
                         notificationList.add(notification)
                     }
+
                     updateRecyclerView(notificationList)
                 }
             }

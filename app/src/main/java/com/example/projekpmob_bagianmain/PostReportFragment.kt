@@ -39,13 +39,18 @@ class PostReportFragment : Fragment(){
     }
 
     private fun submitReport() {
-        val isiReport = view?.findViewById<EditText>(R.id.reportColumn)?.text.toString()
+        var isiReport = view?.findViewById<EditText>(R.id.reportColumn)?.text.toString()
         // Membuat header report dengan tanggal dan waktu saat ini
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val clockFormat = SimpleDateFormat("HH:mm",Locale.getDefault())
+        val timeFormat= SimpleDateFormat("yyyy-MM-dd HH:MM:SS",Locale.getDefault())
         val currentDate = dateFormat.format(Date())
+        val timeStamp = timeFormat.format(Date())
+        val currentClock = clockFormat.format(Date())
         val headerReport = "Laporan pada $currentDate"
+        isiReport = "$currentClock - $isiReport"
         // Membuat objek Report
-        val report = Report(headerReport, isiReport)
+        val report = Report(headerReport, isiReport,"Admin",timeStamp)
 
         // Kirim objek Report ke Firestore
         val firestore = Firebase.firestore
