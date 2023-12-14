@@ -47,7 +47,7 @@ class ReportFragment : Fragment() {
     private fun getNotificationsFromFirestore() {
         val firestore = Firebase.firestore
         firestore.collection("report")
-            .orderBy("timestamp", Query.Direction.DESCENDING)
+//            .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { documents ->
                 if (isAdded) { // Periksa apakah fragment masih terhubung ke activity
