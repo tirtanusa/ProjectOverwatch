@@ -102,7 +102,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
         updateLocationUI()
 
        //Menentukan lokasi manual
-        val location = LatLng(1.2893,113.9213)
+        val location = LatLng(-7.7956,110.3695)
 
         // Menambahkan marker ke lokasi yang ditentukan
         mGoogleMap?.addMarker(MarkerOptions().position(location).title("Anda Membuat Pinpoint Disini"))
@@ -114,9 +114,17 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
             MarkerOptions()
                 .position(location)
                 .title("Anda membuat Pinpoint Disini")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)) // Contoh mengubah warna
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)) //
         )
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            fusedLocationClient.lastLocation.addOnSuccessListener { loc ->
+                if (loc != null) {
+                    val userLatLng = LatLng(loc.latitude, loc.longitude)
+                    mGoogleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 10f))
+                }
+            }
+        }
     }
 
     private fun checkLocationPermission() {
