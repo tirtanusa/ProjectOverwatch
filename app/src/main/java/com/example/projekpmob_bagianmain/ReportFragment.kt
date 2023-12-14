@@ -80,10 +80,22 @@ class ReportFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerViewReport.layoutManager = LinearLayoutManager(context)
-        binding.recyclerViewReport.adapter = NotificationAdapter(emptyList())
-        getNotificationsFromFirestore()
+            binding.recyclerViewReport.layoutManager = LinearLayoutManager(context)
+            binding.recyclerViewReport.adapter = NotificationAdapter(emptyList()) { headerReport, isiReport ->
+                // Implementasi aksi yang diinginkan ketika item diklik
+                // Misalnya, navigasi ke UpdateReportFragment dengan data yang diperlukan
+                val bundle = Bundle().apply {
+                    putString("HEADER_REPORT", headerReport)
+                    putString("ISI_REPORT", isiReport)
+                }
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, UpdateReportFragment())
+                    .addToBackStack(null)  // Optional, if you want to add the transaction to the back stack
+                    .commit()
+            }
+            getNotificationsFromFirestore()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

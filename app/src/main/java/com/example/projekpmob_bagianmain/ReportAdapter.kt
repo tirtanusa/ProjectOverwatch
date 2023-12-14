@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class NotificationAdapter(private var notificationList: List<Report>) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
+class NotificationAdapter(private var notificationList: List<Report>,private val onReportClick: (String, String) -> Unit) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewNotifName: TextView = view.findViewById(R.id.textViewNotifName)
@@ -20,7 +20,11 @@ class NotificationAdapter(private var notificationList: List<Report>) : Recycler
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val report = notificationList[position]
+        var report = notificationList[position]
+        holder.itemView.setOnClickListener {
+            onReportClick(report.headerReport, report.isiReport)
+        }
+        report = notificationList[position]
         holder.textViewNotifName.text = report.headerReport
         holder.textViewNotifDetails.text = report.isiReport
     }
