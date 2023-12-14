@@ -127,7 +127,7 @@ import android.widget.Toast
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 mGoogleMap?.isMyLocationEnabled = true
             } else {
-                // Izin ditolak, Anda bisa menambahkan logika lebih lanjut di sini
+                Toast.makeText(this,"Permintaan Access Ditolak", Toast.LENGTH_SHORT).show()
             }
         }
     }
