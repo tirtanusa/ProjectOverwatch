@@ -24,6 +24,7 @@ import android.util.Log
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 
 
     class MainActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -98,6 +99,21 @@ import android.widget.Toast
     override fun onMapReady(googleMap: GoogleMap) {
         mGoogleMap = googleMap
         updateLocationUI()
+
+        mGoogleMap?.setOnMapClickListener { LatLng ->
+            // Hapus marker jika sudah ada marker di map
+            mGoogleMap?.clear()
+
+            // Membuat dan menambahkan marker baru
+            val markerOptions = MarkerOptions()
+            markerOptions.position(LatLng)
+            markerOptions.title("Lokasi Terpilih")
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+            mGoogleMap?.addMarker(markerOptions)
+
+            //Menyimpan lokasi untuk digunakan saat ingin membuat laporan
+            val selectedLocation = LatLng
+        }
     }
 
     private fun checkLocationPermission() {
@@ -155,7 +171,6 @@ import android.widget.Toast
             // Log atau tangani exception
         }
     }
-
 
     override fun onStart() {
         super.onStart()
