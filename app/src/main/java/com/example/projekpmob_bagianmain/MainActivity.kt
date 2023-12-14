@@ -2,6 +2,7 @@
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Camera
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -100,20 +101,22 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
         mGoogleMap = googleMap
         updateLocationUI()
 
-        mGoogleMap?.setOnMapClickListener { LatLng ->
-            // Hapus marker jika sudah ada marker di map
-            mGoogleMap?.clear()
+       //Menentukan lokasi manual
+        val location = LatLng(1.2893,113.9213)
 
-            // Membuat dan menambahkan marker baru
-            val markerOptions = MarkerOptions()
-            markerOptions.position(LatLng)
-            markerOptions.title("Lokasi Terpilih")
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-            mGoogleMap?.addMarker(markerOptions)
+        // Menambahkan marker ke lokasi yang ditentukan
+        mGoogleMap?.addMarker(MarkerOptions().position(location).title("Anda Membuat Pinpoint Disini"))
 
-            //Menyimpan lokasi untuk digunakan saat ingin membuat laporan
-            val selectedLocation = LatLng
-        }
+        // Memindahkan kamera ke lokasi pinpoint
+        mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(location,5f))
+
+        mGoogleMap?.addMarker(
+            MarkerOptions()
+                .position(location)
+                .title("Anda membuat Pinpoint Disini")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)) // Contoh mengubah warna
+        )
+
     }
 
     private fun checkLocationPermission() {
