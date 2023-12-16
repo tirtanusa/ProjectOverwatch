@@ -14,7 +14,7 @@
         android:textColor="@color/white"
         android:fontFamily="@font/lexendgigalight"
         android:textSize="12sp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="19dp"
         app:layout_constraintBottom_toTopOf="@id/reportColumn"
         app:layout_constraintLeft_toLeftOf="parent" />
 
