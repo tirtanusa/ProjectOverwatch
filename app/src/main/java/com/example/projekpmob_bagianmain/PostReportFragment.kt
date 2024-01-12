@@ -43,6 +43,7 @@ class PostReportFragment : Fragment(){
     }
 
 
+    //Last Location
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
