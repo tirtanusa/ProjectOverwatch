@@ -27,11 +27,13 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.Marker
 import com.google.firebase.Firebase
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
-import com.google.firestore.v1.DocumentChange
+import com.google.firebase.firestore.DocumentChange
+
 
 
     class MainActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -40,7 +42,7 @@ import com.google.firestore.v1.DocumentChange
     private val db : FirebaseFirestore = Firebase.firestore
     private var mGoogleMap: GoogleMap? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var map: GoogleMap
+    private var markersMap = HashMap<String, Marker>()
     private val REQUEST_LOCATION_PERMISSION = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +61,7 @@ import com.google.firestore.v1.DocumentChange
         report.setOnClickListener {
             replaceFragment(ReportFragment())
             getReportDataFromFirestore()
+            setupReportListener()
         }
 
         val map = findViewById<TextView>(R.id.maps)
@@ -68,12 +71,14 @@ import com.google.firestore.v1.DocumentChange
                 .addToBackStack(null)
                 .commit()
             getReportDataFromFirestore()
+            setupReportListener()
         }
         //set map View
         val setting = findViewById<TextView>(R.id.setting)
         setting.setOnClickListener{
             replaceFragment(SettingFragment())
             getReportDataFromFirestore()
+            setupReportListener()
         }
 
         // Set default view
@@ -82,8 +87,10 @@ import com.google.firestore.v1.DocumentChange
                 .add(R.id.fragment_container, mapFragment)
                 .commit()
             getReportDataFromFirestore()
+            setupReportListener()
         }
         getReportDataFromFirestore()
+        setupReportListener()
     }
 
 
@@ -148,19 +155,53 @@ import com.google.firestore.v1.DocumentChange
                 .addOnSuccessListener { result ->
                     for (document in result) {  // Loop melalui setiap dokumen
                         val report = document.toObject(Report::class.java)
+                        report.docID = document.id // Menetapkan ID dari dokumen ke field docID.
                         val reportLocation = LatLng(report.recentLatitude, report.recentLongitude)
-                        mGoogleMap?.addMarker(
+                        val marker = mGoogleMap?.addMarker(
                             MarkerOptions()
                                 .position(reportLocation)
                                 .title(report.headerReport)
                                 .snippet(report.isiReport)
                         )
+                        marker?.let{
+                            markersMap[report.docID] = it
+                        }
                     }
                 }
                 .addOnFailureListener { exception ->
                     Log.w("MainActivity", "Error getting documents: ", exception)
                 }
         }
+
+        private fun setupReportListener() {
+            db.collection("report").addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
+                }
+
+                snapshots?.documentChanges?.forEach { change ->
+                    when (change.type) {
+                        DocumentChange.Type.REMOVED -> {
+                            val reportId = change.document.id
+                            removeMarkerByReportId(reportId)
+                        }
+                        DocumentChange.Type.ADDED -> {
+
+                        }
+                        DocumentChange.Type.MODIFIED -> {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        private fun removeMarkerByReportId(reportId: String) {
+            markersMap[reportId]?.remove()
+            markersMap.remove(reportId)
+        }
+
 
         private fun checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(
@@ -232,6 +273,7 @@ import com.google.firestore.v1.DocumentChange
         // seperti animasi atau mulai pemutaran musik.
         Log.d("ReportFragment", "Fragment dilanjutkan.")
         getReportDataFromFirestore()
+        setupReportListener()
     }
 
     override fun onPause() {

@@ -6,7 +6,7 @@ data class Report(
     val user: String ="",
     val timestamp: String ="",
     val status: Boolean = false,
-    val docID: String="",
+    var docID: String="",
     val recentLatitude: Double = 0.0,
     val recentLongitude: Double= 0.0
 )
