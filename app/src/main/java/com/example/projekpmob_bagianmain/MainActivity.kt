@@ -135,6 +135,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
                 this,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 REQUEST_LOCATION_PERMISSION
+
             )
         } else {
             mGoogleMap?.isMyLocationEnabled = true
