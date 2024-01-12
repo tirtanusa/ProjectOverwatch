@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/reportColumn" />
 
     <CheckBox
-        android:id="@+id/helpArrived"
+        android:id="@+id/handled"
         android:layout_width="27dp"
         android:layout_height="27dp"
         android:layout_marginTop="20dp"

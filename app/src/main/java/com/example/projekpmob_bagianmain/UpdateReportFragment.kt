@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -17,6 +18,7 @@ import java.util.Date
 import java.util.Locale
 
 class UpdateReportFragment: Fragment() {
+    var isChecked = false // Variable to track checkbox state
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,13 +43,35 @@ class UpdateReportFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val submitButton = view.findViewById<ImageView>(R.id.imageView4)
+        val handled = view.findViewById<CheckBox>(R.id.handled)
+
+
+        // Set the checkbox listener
+        handled.setOnCheckedChangeListener { _, isChecked ->
+            this.isChecked = isChecked // Update the variable
+        }
+//        submitButton.setOnClickListener {
+//            val isiReport = arguments?.getString("ISI_REPORT")
+//            val documentID =arguments?.getString("DOCUMENT_ID")
+//            isiReport?.let { it1 -> documentID?.let { it2 -> submitReport(it1, it2) } }
+//
+//
+//        }
         submitButton.setOnClickListener {
-            Log.d("Sent","Submit Dipencet")
             val isiReport = arguments?.getString("ISI_REPORT")
             val documentID =arguments?.getString("DOCUMENT_ID")
-            Log.d("Sent",isiReport.toString())
-            isiReport?.let { it1 -> documentID?.let { it2 -> submitReport(it1, it2) } }
+            if (isChecked) {
+                // Checkbox is checked, delete data from the database
+                documentID?.let { postHandled(it) }
+            } else {
+                isiReport?.let { it1 -> documentID?.let { it2 -> submitReport(it1, it2) } }
+                // Handle the case where the checkbox is not checked
+                // You might want to show a message or take other actions
+            }
+
+            // Optionally, you can submit the report here using isiReport and documentID
         }
+
     }
 
     private fun submitReport(isiSebelumnya : String,documentID:String) {
@@ -85,6 +109,21 @@ class UpdateReportFragment: Fragment() {
             .addOnFailureListener { e ->
                 // Handle ketika gagal
                 Log.d("Failed","Laporan Gagal Dikirim")
+            }
+    }
+
+    private fun postHandled(documentID: String){
+        val firestore = Firebase.firestore
+        firestore.collection("report").document(documentID)
+            .delete()
+            .addOnSuccessListener {
+                // Handle ketika sukses
+                Log.d("Success","Laporan berhasil dihapus")
+                parentFragmentManager.popBackStack()
+            }
+            .addOnFailureListener { e ->
+                // Handle ketika gagal
+                Log.d("Failed","Laporan Gagal Dihapus")
             }
     }
 
