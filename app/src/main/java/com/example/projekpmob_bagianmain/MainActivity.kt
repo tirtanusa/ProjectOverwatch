@@ -1,6 +1,7 @@
     package com.example.projekpmob_bagianmain
 
 import android.Manifest
+import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.graphics.Camera
 import android.media.Image
@@ -26,12 +27,20 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.firebase.Firebase
+import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import com.google.firestore.v1.DocumentChange
 
 
     class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
+    //Inisialisasi instance FirebaseFirestore
+    private val db : FirebaseFirestore = Firebase.firestore
     private var mGoogleMap: GoogleMap? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var map: GoogleMap
     private val REQUEST_LOCATION_PERMISSION = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +58,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
         val report = findViewById<TextView>(R.id.report)
         report.setOnClickListener {
             replaceFragment(ReportFragment())
+            getReportDataFromFirestore()
         }
 
         val map = findViewById<TextView>(R.id.maps)
@@ -57,11 +67,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
                 .replace(R.id.fragment_container, mapFragment)
                 .addToBackStack(null)
                 .commit()
+            getReportDataFromFirestore()
         }
         //set map View
         val setting = findViewById<TextView>(R.id.setting)
         setting.setOnClickListener{
             replaceFragment(SettingFragment())
+            getReportDataFromFirestore()
         }
 
         // Set default view
@@ -69,7 +81,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, mapFragment)
                 .commit()
+            getReportDataFromFirestore()
         }
+        getReportDataFromFirestore()
     }
 
 
@@ -80,8 +94,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
             .commit()
     }
 
-
-    private fun showMapFragment() {
+        private fun showMapFragment() {
         Log.d("MainActivivty","ShowingMapFragment")
         val mapFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as? SupportMapFragment
         mapFragment?.let {
@@ -125,9 +138,31 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
                 }
             }
         }
+        // Panggil fungsi untuk mengambil data dari Firestore dan menambahkan marker ke peta
+        getReportDataFromFirestore()
     }
 
-    private fun checkLocationPermission() {
+        private fun getReportDataFromFirestore() {
+            db.collection("report")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {  // Loop melalui setiap dokumen
+                        val report = document.toObject(Report::class.java)
+                        val reportLocation = LatLng(report.recentLatitude, report.recentLongitude)
+                        mGoogleMap?.addMarker(
+                            MarkerOptions()
+                                .position(reportLocation)
+                                .title(report.headerReport)
+                                .snippet(report.isiReport)
+                        )
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("MainActivity", "Error getting documents: ", exception)
+                }
+        }
+
+        private fun checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -196,6 +231,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
         // Lanjutkan atau mulai aktivitas yang memerlukan interaksi pengguna,
         // seperti animasi atau mulai pemutaran musik.
         Log.d("ReportFragment", "Fragment dilanjutkan.")
+        getReportDataFromFirestore()
     }
 
     override fun onPause() {
