@@ -1,6 +1,7 @@
 package com.example.projekpmob_bagianmain
 
 data class Report(
+    //variable di report
     val headerReport: String = "",
     val isiReport: String = "",
     val user: String ="",
