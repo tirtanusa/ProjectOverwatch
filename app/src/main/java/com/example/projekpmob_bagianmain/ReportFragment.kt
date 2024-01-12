@@ -81,15 +81,19 @@ class ReportFragment : Fragment() {
 
     private fun setupRecyclerView() {
             binding.recyclerViewReport.layoutManager = LinearLayoutManager(context)
-            binding.recyclerViewReport.adapter = NotificationAdapter(emptyList()) { headerReport, isiReport ->
+            binding.recyclerViewReport.adapter = NotificationAdapter(emptyList()) { headerReport, isiReport,docID ->
                 // Implementasi aksi yang diinginkan ketika item diklik
                 // Misalnya, navigasi ke UpdateReportFragment dengan data yang diperlukan
                 val bundle = Bundle().apply {
                     putString("HEADER_REPORT", headerReport)
                     putString("ISI_REPORT", isiReport)
+                    putString("DOCUMENT_ID", docID)
+                }
+                val updateReportFragment = UpdateReportFragment().apply {
+                    arguments = bundle
                 }
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, UpdateReportFragment())
+                    .replace(R.id.fragment_container, updateReportFragment)
                     .addToBackStack(null)  // Optional, if you want to add the transaction to the back stack
                     .commit()
             }
