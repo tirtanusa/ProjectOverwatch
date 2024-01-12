@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Warna" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Change the action bar color -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/basicbg</item> <!-- This sets the status bar color -->
+        <item name="colorAccent">@color/white</item>
+        <!-- Other style attributes -->
+    </style>
+</resources>
