@@ -38,6 +38,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        val mapFragment = supportFragmentManager.findFragmentById(R.id.gmaps) as SupportMapFragment
+//        mapFragment.getMapAsync(this)
         val mapFragment = SupportMapFragment.newInstance()
         mapFragment.getMapAsync(this)
 
