@@ -60,8 +60,6 @@ import com.google.firebase.firestore.DocumentChange
         val report = findViewById<TextView>(R.id.report)
         report.setOnClickListener {
             replaceFragment(ReportFragment())
-            getReportDataFromFirestore()
-            setupReportListener()
         }
 
         val map = findViewById<TextView>(R.id.maps)
@@ -77,8 +75,6 @@ import com.google.firebase.firestore.DocumentChange
         val setting = findViewById<TextView>(R.id.setting)
         setting.setOnClickListener{
             replaceFragment(SettingFragment())
-            getReportDataFromFirestore()
-            setupReportListener()
         }
 
         // Set default view
@@ -165,6 +161,7 @@ import com.google.firebase.firestore.DocumentChange
                         )
                         marker?.let{
                             markersMap[report.docID] = it
+                            Log.d(TAG, "Marker added for reportId: ${report.docID}")
                         }
                     }
                 }
@@ -198,8 +195,12 @@ import com.google.firebase.firestore.DocumentChange
         }
 
         private fun removeMarkerByReportId(reportId: String) {
-            markersMap[reportId]?.remove()
-            markersMap.remove(reportId)
+            markersMap[reportId]?.let {
+                it.remove() // Ini akan menghapus marker dari peta secara visual
+                Log.d(TAG, "Marker removed from map for reportId: $reportId")
+            } ?: Log.d(TAG, "No marker to remove for reportId: $reportId")
+
+            markersMap.remove(reportId) // Ini menghapus referensi marker dari HashMap
         }
 
 
