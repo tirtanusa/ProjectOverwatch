@@ -117,21 +117,21 @@ import com.google.firebase.firestore.DocumentChange
         mGoogleMap = googleMap
         updateLocationUI()
 
-       //Menentukan lokasi manual
-        val location = LatLng(-7.7956,110.3695)
-
-        // Menambahkan marker ke lokasi yang ditentukan
-        mGoogleMap?.addMarker(MarkerOptions().position(location).title("Anda Membuat Pinpoint Disini"))
-
-        // Memindahkan kamera ke lokasi pinpoint
-        mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(location,5f))
-
-        mGoogleMap?.addMarker(
-            MarkerOptions()
-                .position(location)
-                .title("Anda membuat Pinpoint Disini")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)) //
-        )
+//       //Menentukan lokasi manual
+//        val location = LatLng(-7.7956,110.3695)
+//
+//        // Menambahkan marker ke lokasi yang ditentukan
+//        mGoogleMap?.addMarker(MarkerOptions().position(location).title("Anda Membuat Pinpoint Disini"))
+//
+//        // Memindahkan kamera ke lokasi pinpoint
+//        mGoogleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(location,5f))
+//
+//        mGoogleMap?.addMarker(
+//            MarkerOptions()
+//                .position(location)
+//                .title("Anda membuat Pinpoint Disini")
+//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)) //
+//        )
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             fusedLocationClient.lastLocation.addOnSuccessListener { loc ->
