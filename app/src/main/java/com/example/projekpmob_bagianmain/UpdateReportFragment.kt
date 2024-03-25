@@ -50,13 +50,7 @@ class UpdateReportFragment: Fragment() {
         handled.setOnCheckedChangeListener { _, isChecked ->
             this.isChecked = isChecked // Update the variable
         }
-//        submitButton.setOnClickListener {
-//            val isiReport = arguments?.getString("ISI_REPORT")
-//            val documentID =arguments?.getString("DOCUMENT_ID")
-//            isiReport?.let { it1 -> documentID?.let { it2 -> submitReport(it1, it2) } }
-//
-//
-//        }
+
         submitButton.setOnClickListener {
             val isiReport = arguments?.getString("ISI_REPORT")
             val documentID =arguments?.getString("DOCUMENT_ID")

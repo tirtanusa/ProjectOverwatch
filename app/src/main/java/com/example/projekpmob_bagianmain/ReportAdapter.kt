@@ -1,6 +1,6 @@
 package com.example.projekpmob_bagianmain
 
-import android.view.LayoutInflater
+import   android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView

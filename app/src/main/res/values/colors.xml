@@ -17,4 +17,6 @@
     <color name="forget">#9BD2FD</color>
     <color name="buttonlogin">#1B2C3C</color>
     <color name="tulislogin">#74C0FC</color>
+    <color name= "login_button">#006FFD</color>
+    <color name="border_login">#C5C6CC</color>
 </resources>

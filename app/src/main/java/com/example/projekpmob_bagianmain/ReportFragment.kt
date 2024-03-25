@@ -94,7 +94,7 @@ class ReportFragment : Fragment() {
                 }
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, updateReportFragment)
-                    .addToBackStack(null)  // Optional, if you want to add the transaction to the back stack
+                    .addToBackStack(null)
                     .commit()
             }
             getNotificationsFromFirestore()
