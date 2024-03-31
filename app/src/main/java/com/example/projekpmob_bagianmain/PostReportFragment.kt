@@ -85,9 +85,10 @@ class PostReportFragment : Fragment(){
         val firestore = Firebase.firestore
         val newReportRef = firestore.collection("report").document()
         val idGenerate = newReportRef.id
+        val status = "dilaporkan"
         // Membuat objek Report
         val report =
-            Report(headerReport, isiReport, "Admin", timeStamp, false, idGenerate, latitude,longitude)
+            Report(headerReport, isiReport, "Admin", timeStamp, status, idGenerate, latitude,longitude)
         firestore.collection("report").document(idGenerate)
             .set(report)
             .addOnSuccessListener {
