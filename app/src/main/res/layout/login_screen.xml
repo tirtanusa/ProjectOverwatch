@@ -61,9 +61,10 @@
 
     <ImageView
         android:id="@+id/login_button"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/buttonlogin"
         app:layout_constraintStart_toStartOf="parent"
