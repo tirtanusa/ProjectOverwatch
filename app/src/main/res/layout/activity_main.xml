@@ -4,91 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/basicbg"
+    android:background="@color/white"
     tools:context=".MainActivity">
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_marginTop="65dp"
-        android:background="@color/basicbg"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="88dp"
+        android:background="@color/white"/>
 
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="37dp"
-        android:layout_height="37dp"
-        android:src="@drawable/logo"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="10dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/logo"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="8dp"
-        android:textSize="17sp"
-        android:text="O V E R W A T C H"
-        android:textColor="@color/teks"
-        android:textStyle="bold"
-        />
 
     <TextView
         android:id="@+id/report"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_width="90dp"
-        android:layout_height="80dp"
-        android:background="@drawable/round_edge"
+        android:layout_marginBottom="30dp"
+        android:layout_width="111.67dp"
+        android:layout_marginStart="16dp"
+        android:layout_height="42dp"
         />
 
     <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="52dp"
+        android:layout_marginStart="61.83dp"
+        android:src="@drawable/icon_report"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/report"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="38dp"
-        android:layout_marginLeft="22dp"
+        android:text="Report"
+        android:textColor="#71727A"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="53dp"
         />
+
 
     <TextView
         android:id="@+id/maps"
-        android:layout_width="140dp"
-        android:layout_height="80dp"
+        android:layout_width="111.67dp"
+        android:layout_height="42dp"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/round_edge" />
+        android:layout_marginBottom="30dp" />
 
     <ImageView
-        android:layout_centerInParent="true"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="52dp"
+        android:src="@drawable/mapss"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/map"
-        android:layout_marginBottom="38dp"
+        android:text="Maps"
+        android:textAlignment="center"
+        android:textColor="#71727A"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="30dp"
         />
+
 
     <TextView
         android:id="@+id/setting"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
-        android:layout_width="90dp"
-        android:layout_height="80dp"
-        android:background="@drawable/round_edge"
+        android:layout_marginBottom="30dp"
+        android:layout_width="111.67dp"
+        android:layout_marginEnd="16dp"
+        android:layout_height="42dp"
         />
-
     <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="61.83dp"
+        android:src="@drawable/settingsuser"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/settings"
-        android:layout_marginBottom="38dp"
-        android:layout_marginRight="22dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Profile"
+        android:textColor="#71727A"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="53dp"
         />
 
 
