@@ -23,11 +23,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.util.Log
+import android.view.KeyEvent
+import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.Marker
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.Firebase
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
@@ -44,6 +48,9 @@ import com.google.firebase.firestore.DocumentChange
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var markersMap = HashMap<String, Marker>()
     private val REQUEST_LOCATION_PERMISSION = 1
+    private lateinit var bottomSheet: View
+    private var bottomSheetVisible = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +67,18 @@ import com.google.firebase.firestore.DocumentChange
         val report = findViewById<TextView>(R.id.report)
         report.setOnClickListener {
             replaceFragment(ReportFragment())
+        }
+        val bottomSheetButton = findViewById<Button>(R.id.report_button)
+        bottomSheet = findViewById(R.id.bottomSheet)
+        bottomSheetButton.setOnClickListener{
+            toggleBottomSheet()
+        }
+
+        val submitButton = findViewById<ImageView>(R.id.imageView4)
+        submitButton.setOnClickListener{
+            var postReportFragment = supportFragmentManager.findFragmentById(R.id.bottomSheet) as PostReportFragment
+            Log.d("Jalan sampai sini","Jalan")
+            postReportFragment.getLastLocation()
         }
 
         val map = findViewById<TextView>(R.id.maps)
@@ -87,6 +106,28 @@ import com.google.firebase.firestore.DocumentChange
         }
         getReportDataFromFirestore()
         setupReportListener()
+    }
+
+        private fun toggleBottomSheet() {
+        if (bottomSheetVisible) {
+            hideBottomSheet()
+        } else {
+            showBottomSheet()
+        }
+    }
+
+    private fun showBottomSheet() {
+        val animation = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom)
+        bottomSheet.startAnimation(animation)
+        bottomSheet.visibility = View.VISIBLE
+        bottomSheetVisible = true
+    }
+
+    private fun hideBottomSheet() {
+        val animation = AnimationUtils.loadAnimation(this, R.anim.slide_out_bottom)
+        bottomSheet.startAnimation(animation)
+        bottomSheet.visibility = View.GONE
+        bottomSheetVisible = false
     }
 
 

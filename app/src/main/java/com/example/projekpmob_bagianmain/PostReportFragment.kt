@@ -54,7 +54,7 @@ class PostReportFragment : Fragment(){
             }
         }
     }
-    private fun getLastLocation() {
+    fun getLastLocation() {
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             val locationResult: Task<Location> = fusedLocationClient.lastLocation
             locationResult.addOnSuccessListener { location: Location? ->
@@ -67,7 +67,7 @@ class PostReportFragment : Fragment(){
 
 
 
-    private fun submitReport(latitude: Double, longitude: Double) {
+    fun submitReport(latitude: Double, longitude: Double) {
         var isiReport = view?.findViewById<EditText>(R.id.reportColumn)?.text.toString()
         // Membuat header report dengan tanggal dan waktu saat ini
         val timeFormat= SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault())

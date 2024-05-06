@@ -6,13 +6,28 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".MainActivity">
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="88dp"
-        android:background="@color/white"/>
+        android:layout_marginBottom="88dp"/>
+    <Button
+        android:id="@+id/report_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/login_button"/>
 
+
+
+
+    <include layout="@layout/post_report"
+        android:id="@+id/bottomSheet"/>
 
     <TextView
         android:id="@+id/report"
@@ -97,6 +112,8 @@
         android:layout_marginBottom="30dp"
         android:layout_marginEnd="53dp"
         />
+
+
 
 
 </RelativeLayout>
