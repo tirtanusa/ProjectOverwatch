@@ -76,10 +76,15 @@ import com.google.firebase.firestore.DocumentChange
 
         val submitButton = findViewById<ImageView>(R.id.imageView4)
         submitButton.setOnClickListener{
-            var postReportFragment = supportFragmentManager.findFragmentById(R.id.bottomSheet) as PostReportFragment
+//            var postReportFragment = supportFragmentManager.findFragmentById(R.id.bottomSheet) as PostReportFragment
+            (supportFragmentManager.findFragmentById(R.id.bottomSheet) as PostReportFragment?)?.let {
+                it.getLastLocation()
+            }
+//            postReportFragment.submitReport()
             Log.d("Jalan sampai sini","Jalan")
-            postReportFragment.getLastLocation()
+//            postReportFragment.getLastLocation()
         }
+
 
         val map = findViewById<TextView>(R.id.maps)
         map.setOnClickListener {
