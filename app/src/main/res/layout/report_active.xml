@@ -28,14 +28,5 @@
         android:layout_marginBottom="81dp"
         android:layout_centerHorizontal="true" />
 
-    <ImageView
-        android:id="@+id/postReportButton"
-        android:layout_width="88dp"
-        android:layout_height="81dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/round_edge"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="15dp"
-        android:src="@drawable/plus" />
+
 </RelativeLayout>

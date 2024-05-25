@@ -19,4 +19,5 @@
     <color name="tulislogin">#74C0FC</color>
     <color name= "login_button">#006FFD</color>
     <color name="border_login">#C5C6CC</color>
+    <color name="redReport">#FD0000</color>
 </resources>

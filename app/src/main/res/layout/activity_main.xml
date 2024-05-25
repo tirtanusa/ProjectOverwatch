@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".MainActivity">
+
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="88dp"
-        android:background="@color/white"/>
-
+        android:background="@color/white" />
 
     <TextView
         android:id="@+id/report"
@@ -48,6 +49,22 @@
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="30dp" />
+
+    <Button
+        android:id="@+id/reportButtonMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/redReport"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="105dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="152dp"
+        android:text="Report"
+        android:textColor="@color/white"
+        android:textSize="12dp" />
+
+
 
     <ImageView
         android:layout_width="20dp"

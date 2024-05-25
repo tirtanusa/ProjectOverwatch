@@ -38,10 +38,10 @@ class ReportFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
 
-        val postReportButton = view.findViewById<ImageView>(R.id.postReportButton)
-        postReportButton.setOnClickListener {
-            goToPostReportFragment()
-        }
+//        val postReportButton = view.findViewById<ImageView>(R.id.reportButton)
+//        postReportButton.setOnClickListener {
+//            goToPostReportFragment()
+//        }
     }
 
     private fun getNotificationsFromFirestore() {

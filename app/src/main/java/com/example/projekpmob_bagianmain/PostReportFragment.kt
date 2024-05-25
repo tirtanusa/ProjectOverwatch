@@ -18,6 +18,7 @@ import java.util.Date
 import java.util.Locale
 import android.Manifest
 import android.location.Location
+import android.widget.Button
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
@@ -47,7 +48,7 @@ class PostReportFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        val submitButton = view.findViewById<ImageView>(R.id.imageView4)
+        val submitButton = view.findViewById<Button>(R.id.reportButton)
         submitButton.setOnClickListener {
             if (checkLocationPermissions()) {
                 getLastLocation()

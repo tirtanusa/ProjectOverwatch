@@ -23,6 +23,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.util.Log
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
@@ -45,6 +46,8 @@ import com.google.firebase.firestore.DocumentChange
     private var markersMap = HashMap<String, Marker>()
     private val REQUEST_LOCATION_PERMISSION = 1
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -52,6 +55,7 @@ import com.google.firebase.firestore.DocumentChange
 //        val mapFragment = supportFragmentManager.findFragmentById(R.id.gmaps) as SupportMapFragment
 //        mapFragment.getMapAsync(this)
         val mapFragment = SupportMapFragment.newInstance()
+        val addReport = findViewById<Button>(R.id.reportButtonMain)
         mapFragment.getMapAsync(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -70,11 +74,17 @@ import com.google.firebase.firestore.DocumentChange
                 .commit()
             getReportDataFromFirestore()
             setupReportListener()
+            addReport.visibility = View.VISIBLE
         }
         //set map View
         val setting = findViewById<TextView>(R.id.setting)
         setting.setOnClickListener{
             replaceFragment(SettingFragment())
+        }
+
+
+        addReport.setOnClickListener{
+            replaceFragment(PostReportFragment())
         }
 
         // Set default view
@@ -84,6 +94,7 @@ import com.google.firebase.firestore.DocumentChange
                 .commit()
             getReportDataFromFirestore()
             setupReportListener()
+//            addReport.visibility = View.VISIBLE
         }
         getReportDataFromFirestore()
         setupReportListener()
@@ -95,6 +106,13 @@ import com.google.firebase.firestore.DocumentChange
             .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
+
+        val addReport = findViewById<Button>(R.id.reportButtonMain)
+        if (fragment is SupportMapFragment) {
+            addReport.visibility = View.VISIBLE
+        } else {
+            addReport.visibility = View.GONE
+        }
     }
 
         private fun showMapFragment() {
@@ -322,11 +340,20 @@ import com.google.firebase.firestore.DocumentChange
     }
 
 
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 1) {
-            supportFragmentManager.popBackStack()
-        } else {
-            super.onBackPressed()
+        override fun onBackPressed() {
+            if (supportFragmentManager.backStackEntryCount > 1) {
+                supportFragmentManager.popBackStack()
+                // Delay the fragment check to ensure the back stack has updated
+                supportFragmentManager.executePendingTransactions()
+                // Check the current fragment
+                val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+                val addReport = findViewById<Button>(R.id.reportButtonMain)
+                addReport.visibility = if (currentFragment is SupportMapFragment) View.VISIBLE else View.GONE
+            } else {
+                super.onBackPressed()
+                // Ensure the button is visible if we're back to the default view
+                val addReport = findViewById<Button>(R.id.reportButtonMain)
+                addReport.visibility = View.VISIBLE
+            }
         }
-    }
 }
