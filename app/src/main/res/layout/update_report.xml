@@ -4,79 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/basicbg"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerViewReport"-->
-<!--        android:layout_width="411dp"-->
-<!--        android:layout_height="190dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:paddingHorizontal="30dp"-->
-<!--        android:paddingTop="10dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/loremipsum" />-->
     <TextView
         android:id="@+id/isiReportSebelum"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/lexendgiga"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/loremipsum"
         android:paddingHorizontal="30dp"
         android:paddingTop="10dp"/>
-
-    <!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:id="@+id/myCheckBox"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@drawable/round_edge"-->
-<!--        app:buttonCompat="@drawable/checkbox_custom"-->
-<!--        android:text="."-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/reportColumn"></androidx.appcompat.widget.AppCompatButton>-->
-
-    <CheckBox
-        android:id="@+id/help"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="12dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/primary_black"
-        android:buttonTint="#74C0FC"
-        app:layout_constraintTop_toBottomOf="@id/reportColumn" />
-
-    <CheckBox
-        android:id="@+id/handled"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="12dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/primary_black"
-        android:buttonTint="#74C0FC"
-        app:layout_constraintTop_toBottomOf="@id/help" />
 
     <TextView
         android:id="@+id/loremipsum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lorem Ipsum's Report"
-        android:fontFamily="@font/lexendgiga"
-        android:textSize="14dp"
+        android:textSize="24dp"
         android:layout_marginLeft="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
 
-        android:textColor="@color/white"
+        android:textColor="@color/redReport"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="48dp"/>
+
 
     <EditText
         android:id="@+id/reportColumn"
         android:layout_width="373dp"
         android:layout_height="48dp"
-        android:layout_marginTop="296dp"
+        android:layout_marginTop="340dp"
         android:background="@drawable/round_edge"
         android:fontFamily="@font/lexendgigalight"
         android:hint="Wildfire"
@@ -90,56 +49,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/HelpArrived"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/lexendgiga"
-        android:paddingVertical="5dp"
-        android:text="Has help arrived?"
-        android:textColor="@color/white"
-        android:textSize="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reportColumn" />
-
-    <TextView
-        android:id="@+id/Handled"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/lexendgiga"
-        android:paddingVertical="5dp"
-        android:text="Has the situation been handled ?"
-        android:textColor="@color/white"
-        android:textSize="12dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/HelpArrived" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/lexendgigalight"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="4dp"
         android:text="Update Your Report"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@id/reportColumn"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="88dp"
-        android:layout_height="81dp"
+        android:layout_width="327dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/round_edge"
+        android:background="@drawable/update_report_button"
         android:paddingHorizontal="12dp"
         android:paddingVertical="15dp"
-        android:src="@drawable/plus"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -149,8 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="18dp"
-        android:layout_marginBottom="0dp"
-        android:fontFamily="@font/lexendgiga"
+        android:layout_marginBottom="40dp"
         android:text="Update A Report"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

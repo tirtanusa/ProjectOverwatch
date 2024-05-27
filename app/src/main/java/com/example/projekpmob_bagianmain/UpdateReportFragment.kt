@@ -42,13 +42,6 @@ class UpdateReportFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val submitButton = view.findViewById<ImageView>(R.id.imageView4)
-        val handled = view.findViewById<CheckBox>(R.id.handled)
-
-
-        // Set the checkbox listener
-        handled.setOnCheckedChangeListener { _, isChecked ->
-            this.isChecked = isChecked // Update the variable
-        }
 
         submitButton.setOnClickListener {
             val isiReport = arguments?.getString("ISI_REPORT")
