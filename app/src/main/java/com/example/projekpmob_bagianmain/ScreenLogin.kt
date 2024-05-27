@@ -35,10 +35,15 @@ class ScreenLogin : AppCompatActivity() {
             val email = emailcheck.text.toString().trim() // trim untuk menghilangkan whitespace
             val password = passwordcheck.text.toString()
 
-            if (isValidEmail(email)) {
-                loginUser(email, password)
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Cannot be empty", Toast.LENGTH_SHORT).show()
             } else {
-                println("Format email tidak valid")
+                if (isValidEmail(email)) {
+                    loginUser(email, password)
+                } else {
+                    println("Format email tidak valid")
+                    Toast.makeText(this, "Email tidak valid", Toast.LENGTH_SHORT).show()
+                }
             }
 
         }
@@ -72,7 +77,7 @@ class ScreenLogin : AppCompatActivity() {
 
                 } else {
                     println("Login gagal")
-                    Toast.makeText(baseContext, "Login Failed.",
+                    Toast.makeText(baseContext, "Login failed, make sure email and password correctly",
                         Toast.LENGTH_SHORT).show()
                 }
             }
