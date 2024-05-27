@@ -19,6 +19,7 @@ import java.util.Locale
 import android.Manifest
 import android.location.Location
 import android.widget.Button
+import android.widget.Toast
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.Task
@@ -69,40 +70,48 @@ class PostReportFragment : Fragment(){
 
 
     private fun submitReport(latitude: Double, longitude: Double) {
-        var isiReport = view?.findViewById<EditText>(R.id.reportColumn)?.text.toString()
-        // Membuat header report dengan tanggal dan waktu saat ini
-        val timeFormat= SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault())
+        // Find the EditText and get its content
+        val reportEditText = view?.findViewById<EditText>(R.id.reportColumn)
+        var isiReport = reportEditText?.text.toString()
+
+        // Check if the EditText is empty
+        if (isiReport.isEmpty()) {
+            // Show a Toast message and return to prevent further execution
+            Toast.makeText(context, "Report text cannot be empty", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Create the report header with the current date and time
+        val timeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val timeStamp = timeFormat.format(Date())
         val tanggalWaktu = Date()
-        var pisahWaktu = timeFormat.format(tanggalWaktu)
+        val pisahWaktu = timeFormat.format(tanggalWaktu)
         val partisi = pisahWaktu.split(" ")
         val tanggal = partisi[0]
         val waktu = partisi[1]
         val headerReport = "Laporan pada $tanggal"
         isiReport = "$waktu - $isiReport"
 
-
-        // Kirim objek Report ke Firestore
+        // Send the report object to Firestore
         val firestore = Firebase.firestore
         val newReportRef = firestore.collection("report").document()
         val idGenerate = newReportRef.id
         val status = "dilaporkan"
-        // Membuat objek Report
-        val report =
-            Report(headerReport, isiReport, "Admin", timeStamp, status, idGenerate, latitude,longitude)
+
+        // Create the Report object
+        val report = Report(headerReport, isiReport, "Admin", timeStamp, status, idGenerate, latitude, longitude)
         firestore.collection("report").document(idGenerate)
             .set(report)
             .addOnSuccessListener {
-                // Handle ketika sukses
-                Log.d("Success","Laporan berhasil dikirim")
+                // Handle when the report is successfully sent
+                Log.d("Success", "Laporan berhasil dikirim")
                 parentFragmentManager.popBackStack()
             }
             .addOnFailureListener { e ->
-                // Handle ketika gagal
-                Log.d("Failed","Laporan Gagal Dikirim")
+                // Handle when sending the report fails
+                Log.d("Failed", "Laporan Gagal Dikirim")
             }
     }
-
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
