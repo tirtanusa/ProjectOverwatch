@@ -9,6 +9,22 @@ class UserRepository {
     val auth = FirebaseAuth.getInstance()
     private val TAG = "UserRepository"
 
+    fun checkEmailUniqueness(email: String, callback: (Boolean) -> Unit) {
+        db.collection("users")
+            .whereEqualTo("email", email)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val querySnapshot = task.result
+                    val isUnique = querySnapshot?.isEmpty ?: true
+                    callback(isUnique)
+                } else {
+                    Log.e(TAG, "Error checking email uniqueness: ${task.exception?.message}")
+                    callback(false)
+                }
+            }
+    }
+
     fun registerUser(username: String, password: String, email: String) {
 
         val user = hashMapOf(
