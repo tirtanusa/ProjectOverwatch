@@ -32,7 +32,7 @@ class ScreenLogin : AppCompatActivity() {
         }
 
         forgetButton.setOnClickListener {
-            val intent = Intent(this, ScreenPasswordForget::class.java)
+            val intent = Intent(this, ScreenFp::class.java)
             startActivity(intent)
             finish()
         }

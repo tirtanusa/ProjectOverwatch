@@ -22,7 +22,14 @@ class ScreenSignup : AppCompatActivity() {
         val password_fieldField = findViewById<EditText>(R.id.password_field)
         val confirm_password_fieldField = findViewById<EditText>(R.id.confirm_password_field)
         val signupButton = findViewById<Button>(R.id.signuplabel)
+        val loginButton = findViewById<Button>(R.id.login_button_signup)
         val termsCheckbox = findViewById<CheckBox>(R.id.checkbox_agreed_to_terms)
+
+        loginButton.setOnClickListener {
+            val intent = Intent(this, ScreenLogin::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         // TextWatcher to the username field
         UsernameField.addTextChangedListener(object : TextWatcher {

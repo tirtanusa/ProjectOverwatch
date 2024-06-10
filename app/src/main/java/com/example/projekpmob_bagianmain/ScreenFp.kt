@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 
-class ScreenPasswordForget : AppCompatActivity() {
+class ScreenFp : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.forget_password_screen)
+        setContentView(R.layout.fp_screen)
 
         auth = FirebaseAuth.getInstance()
 
