@@ -23,9 +23,16 @@ class ScreenLogin : AppCompatActivity() {
         val passwordcheck = findViewById<EditText>(R.id.password_field)
         val loginButton = findViewById<Button>(R.id.logintext)
         val registerButton = findViewById<Button>(R.id.regisButton)
+        val forgetButton = findViewById<Button>(R.id.forget_password)
 
         registerButton.setOnClickListener {
             val intent = Intent(this, ScreenSignup::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        forgetButton.setOnClickListener {
+            val intent = Intent(this, ScreenPasswordForget::class.java)
             startActivity(intent)
             finish()
         }
