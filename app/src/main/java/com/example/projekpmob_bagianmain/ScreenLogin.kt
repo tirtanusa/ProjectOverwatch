@@ -1,6 +1,7 @@
 package com.example.projekpmob_bagianmain
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import com.google.firebase.auth.FirebaseAuth
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ class ScreenLogin : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_screen)
@@ -26,6 +28,16 @@ class ScreenLogin : AppCompatActivity() {
         val loginButton = findViewById<Button>(R.id.logintext)
         val registerButton = findViewById<Button>(R.id.regisButton)
         val forgetButton = findViewById<Button>(R.id.forget_password)
+
+        val sharedPreferences = getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+
+        if (isLoggedIn) {
+            // Redirect ke halaman utama atau halaman berikutnya
+            // Contoh:
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
 
         registerButton.setOnClickListener {
             val intent = Intent(this, ScreenSignup::class.java)
@@ -69,6 +81,10 @@ class ScreenLogin : AppCompatActivity() {
                 if (task.isSuccessful) {
 
                     val user = auth.currentUser
+                    // Membuat atau mengambil instance dari SharedPreferences
+                    val sharedPreferences = getSharedPreferences("myAppPrefs", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+
                     if (user != null) {
                         if (!user.isEmailVerified) {
                             println("Email belum diverif")
@@ -89,6 +105,9 @@ class ScreenLogin : AppCompatActivity() {
                                 .get()
                                 .addOnSuccessListener { documents ->
                                     if (!documents.isEmpty) {
+                                        // Simpan status login
+                                        editor.putBoolean("isLoggedIn", true) // misalnya, Anda bisa menggunakan token atau data yang sesuai
+                                        editor.apply()
                                         val document = documents.documents[0]
                                         val username = document.getString("username") ?: "User"
                                         println("Login berhasil")

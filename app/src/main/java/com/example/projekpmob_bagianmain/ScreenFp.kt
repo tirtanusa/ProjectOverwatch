@@ -11,6 +11,7 @@ import android.widget.Toast
 class ScreenFp : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private val userRepository = UserRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,19 +33,26 @@ class ScreenFp : AppCompatActivity() {
             val email = reset_email.text.toString().trim()
 
             if (email.isNotEmpty()) {
-                auth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            // Tampilkan pesan bahwa email telah dikirim
-                            toast("Email reset password telah dikirim.")
-                            val intent = Intent(this, ScreenLogin::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            // Tampilkan pesan kesalahan
-                            toast("Gagal mengirim email reset password.")
-                        }
+                userRepository.checkEmailUniqueness(email) { isUnique ->
+                    if (isUnique) {
+                        auth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    // Tampilkan pesan bahwa email telah dikirim
+                                    toast("Email reset password telah dikirim.")
+                                    val intent = Intent(this, ScreenLogin::class.java)
+                                    startActivity(intent)
+                                    finish()
+                                } else {
+                                    // Tampilkan pesan kesalahan
+                                    toast("Gagal mengirim email reset password.")
+                                }
+                            }
+                    } else {
+                        // Email is already registered
+                        Toast.makeText(this, "Email tidak valid", Toast.LENGTH_SHORT).show()
                     }
+                }
             } else {
                 toast("Masukkan email Anda.")
             }

@@ -36,7 +36,6 @@ import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.DocumentChange
 
 
-
     class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Inisialisasi instance FirebaseFirestore
