@@ -78,9 +78,9 @@ class PostReportFragment : Fragment(){
         val victim = view?.findViewById<RadioButton>(R.id.Victim)
         var victimChecked = victim
 
-        if (victim != null && victim.isChecked) {
-            isiReport = "A Victim Has Reported an Incident".toString()
-        }
+//        if (victim != null && victim.isChecked) {
+//            isiReport = "A Victim Has Reported an Incident".toString()
+//        }
         // Check if the EditText is empty
         if (isiReport.isEmpty()) {
             // Show a Toast message and return to prevent further execution

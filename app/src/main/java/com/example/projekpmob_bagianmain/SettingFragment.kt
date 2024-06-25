@@ -23,20 +23,21 @@ class SettingFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val username = arguments?.getString("USERNAME") ?: "User"
         val editAccount = view.findViewById<TextView>(R.id.edit)
         editAccount.setOnClickListener {
             val newFragment = editAccount()
+            val bundle = Bundle().apply {
+                putString("USERNAME", username)
+            }
+            newFragment.arguments = bundle
+
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-
-            // Replace whatever is in the fragment_container view with this fragment
             transaction.replace(R.id.fragment_container, newFragment)
-            // If you want to add this transaction to the back stack
             transaction.addToBackStack(null)
-
-            // Commit the transaction
             transaction.commit()
         }
-        val username = arguments?.getString("USERNAME") ?: "User"
         val usernameTextView = view.findViewById<TextView>(R.id.nama)
         usernameTextView.text = "$username"
     }
