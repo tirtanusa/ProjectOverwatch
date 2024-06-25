@@ -7,8 +7,8 @@ import android.util.Log
 class UserRepository {
     val db = FirebaseFirestore.getInstance()
     val auth = FirebaseAuth.getInstance()
-    private val TAG = "UserRepository"
 
+    private val TAG = "UserRepository"
     fun checkEmailUniqueness(email: String, callback: (Boolean) -> Unit) {
         db.collection("users")
             .whereEqualTo("email", email)

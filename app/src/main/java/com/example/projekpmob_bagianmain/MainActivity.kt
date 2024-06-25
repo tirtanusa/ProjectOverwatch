@@ -78,10 +78,18 @@ import com.google.firebase.firestore.DocumentChange
         }
         //set map View
         val setting = findViewById<TextView>(R.id.setting)
-        setting.setOnClickListener{
-            replaceFragment(SettingFragment())
+//        val userId = intent.getStringExtra("USER_ID")
+        val username = intent.getStringExtra("USERNAME") ?: "User"
+//        Log.e(TAG,"User Id : $userId", )
+        Log.e(TAG,"User Id adalah : $username", )
+        setting.setOnClickListener {
+            val settingFragment = SettingFragment()
+            val bundle = Bundle().apply {
+                putString("USERNAME", username)
+            }
+            settingFragment.arguments = bundle
+            replaceFragment(settingFragment)
         }
-
 
         addReport.setOnClickListener{
             replaceFragment(PostReportFragment())

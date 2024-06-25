@@ -1,5 +1,6 @@
 package com.example.projekpmob_bagianmain
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import com.google.firebase.auth.FirebaseAuth
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ScreenLogin : AppCompatActivity() {
 
@@ -73,12 +75,42 @@ class ScreenLogin : AppCompatActivity() {
                             Toast.makeText(baseContext, "Harap verifikasi email Anda terlebih dahulu.",
                                 Toast.LENGTH_SHORT).show()
                         } else {
-                            println("Login berhasil")
-                            Toast.makeText(baseContext, "Login Successful.",
-                                Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+//
+//                            val userId = user.uid
+//                            val username = user.displayName ?: "User"
+//                            println("Login berhasil")
+//                            Toast.makeText(baseContext, "Login Successful.",
+//                                Toast.LENGTH_SHORT).show()
+//                            startActivity(intent)
+//                            finish()
+                            val db = FirebaseFirestore.getInstance()
+                            db.collection("users")
+                                .whereEqualTo("email", email)
+                                .get()
+                                .addOnSuccessListener { documents ->
+                                    if (!documents.isEmpty) {
+                                        val document = documents.documents[0]
+                                        val username = document.getString("username") ?: "User"
+                                        println("Login berhasil")
+                                        Toast.makeText(baseContext, "Login Successful.",
+                                            Toast.LENGTH_SHORT).show()
+
+                                        // Pass the user data to the next activity or use as needed
+                                        val intent = Intent(this, MainActivity::class.java)
+                                        intent.putExtra("USERNAME", username)
+                                        startActivity(intent)
+                                        finish()
+                                    } else {
+                                        println("User data not found")
+                                        Toast.makeText(baseContext, "User data not found.",
+                                            Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                                .addOnFailureListener { exception ->
+                                    println("Error getting user data: ${exception.message}")
+                                    Toast.makeText(baseContext, "Error getting user data.",
+                                        Toast.LENGTH_SHORT).show()
+                        }
                         }
                     }
 
