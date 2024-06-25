@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -63,6 +64,11 @@ class UpdateReportFragment: Fragment() {
     private fun submitReport(isiSebelumnya : String,documentID:String) {
         Log.d("Failed","Mencoba Submit")
         var isiReport = view?.findViewById<EditText>(R.id.reportColumn)?.text.toString()
+        if (isiReport.isEmpty()) {
+            // Show a Toast message and return to prevent further execution
+            Toast.makeText(context, "Report text cannot be empty", Toast.LENGTH_SHORT).show()
+            return
+        }
         // Membuat header report dengan tanggal dan waktu saat ini
         val timeFormat= SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         val timeStamp = timeFormat.format(Date())
