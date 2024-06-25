@@ -80,12 +80,16 @@ import com.google.firebase.firestore.DocumentChange
         val setting = findViewById<TextView>(R.id.setting)
 //        val userId = intent.getStringExtra("USER_ID")
         val username = intent.getStringExtra("USERNAME") ?: "User"
+        val email = intent.getStringExtra("EMAIL")
+        val password = intent.getStringExtra("PASSWORD")
 //        Log.e(TAG,"User Id : $userId", )
         Log.e(TAG,"User Id adalah : $username", )
         setting.setOnClickListener {
             val settingFragment = SettingFragment()
             val bundle = Bundle().apply {
                 putString("USERNAME", username)
+                putString("PASSWORD",password)
+                putString("EMAIL", email)
             }
             settingFragment.arguments = bundle
             replaceFragment(settingFragment)

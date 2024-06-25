@@ -98,6 +98,8 @@ class ScreenLogin : AppCompatActivity() {
                                         // Pass the user data to the next activity or use as needed
                                         val intent = Intent(this, MainActivity::class.java)
                                         intent.putExtra("USERNAME", username)
+                                        intent.putExtra("EMAIL",email)
+                                        intent.putExtra("PASSWORD", password)
                                         startActivity(intent)
                                         finish()
                                     } else {

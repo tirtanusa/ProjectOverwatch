@@ -25,11 +25,15 @@ class SettingFragment : Fragment(){
 
 
         val username = arguments?.getString("USERNAME") ?: "User"
+        val email = arguments?.getString("EMAIL")
+        val password = arguments?.getString("PASSWORD")
         val editAccount = view.findViewById<TextView>(R.id.edit)
         editAccount.setOnClickListener {
             val newFragment = editAccount()
             val bundle = Bundle().apply {
                 putString("USERNAME", username)
+                putString("EMAIL", email)
+                putString("PASSWORD",password)
             }
             newFragment.arguments = bundle
 
