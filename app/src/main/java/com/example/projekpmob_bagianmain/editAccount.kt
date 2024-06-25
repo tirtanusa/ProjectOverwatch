@@ -80,6 +80,10 @@ class editAccount : Fragment(){
                 refresh(email, username,newPassword)
             }
             else if( newUsername.isNotEmpty() && newPassword.isNotEmpty() && confirmPassword.isNotEmpty()){
+                if(confirmPassword != newPassword){
+                    Toast.makeText(activity, "Password doesnt match!", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 updateUsername(email, newUsername)
                 updatePassword(newPassword)
                 refresh(email, newUsername,newPassword)
