@@ -119,6 +119,15 @@ class ScreenLogin : AppCompatActivity() {
                                         intent.putExtra("USERNAME", username)
                                         intent.putExtra("EMAIL",email)
                                         intent.putExtra("PASSWORD", password)
+
+                                        val sharedPreferencesUser = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+                                        val editor = sharedPreferencesUser.edit()
+                                        editor.putString("EMAIL", email)
+                                        editor.putString("USERNAME", username)
+                                        editor.putString("PASSWORD", password)
+                                        editor.apply()
+
+
                                         startActivity(intent)
                                         finish()
                                     } else {

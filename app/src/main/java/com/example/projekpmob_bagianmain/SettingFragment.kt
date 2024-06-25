@@ -30,6 +30,11 @@ class SettingFragment : Fragment(){
         val username = arguments?.getString("USERNAME") ?: "User"
         val email = arguments?.getString("EMAIL")
         val password = arguments?.getString("PASSWORD")
+        val sharedPreferences = requireContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val emailShared = sharedPreferences.getString("EMAIL", null)
+        val usernameShared = sharedPreferences.getString("USERNAME", null)
+        val passwordShared = sharedPreferences.getString("PASSWORD", null)
+        Log.e(TAG,"$usernameShared $emailShared $passwordShared")
         val editAccount = view.findViewById<TextView>(R.id.edit)
         val logoutButton = view.findViewById<TextView>(R.id.log_out_button)
         editAccount.setOnClickListener {

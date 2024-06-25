@@ -2,6 +2,7 @@
 
 import android.Manifest
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Camera
 import android.media.Image
@@ -78,10 +79,14 @@ import com.google.firebase.firestore.DocumentChange
         //set map View
         val setting = findViewById<TextView>(R.id.setting)
 //        val userId = intent.getStringExtra("USER_ID")
-        val username = intent.getStringExtra("USERNAME") ?: "User"
-        val email = intent.getStringExtra("EMAIL")
-        val password = intent.getStringExtra("PASSWORD")
+//        val username = intent.getStringExtra("USERNAME") ?: "User"
+//        val email = intent.getStringExtra("EMAIL")
+//        val password = intent.getStringExtra("PASSWORD")
 //        Log.e(TAG,"User Id : $userId", )
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val email = sharedPreferences.getString("EMAIL", null)
+        val username = sharedPreferences.getString("USERNAME", null)
+        val password = sharedPreferences.getString("PASSWORD", null)
         Log.e(TAG,"User Id adalah : $username", )
         setting.setOnClickListener {
             val settingFragment = SettingFragment()
@@ -93,7 +98,6 @@ import com.google.firebase.firestore.DocumentChange
             settingFragment.arguments = bundle
             replaceFragment(settingFragment)
         }
-
         addReport.setOnClickListener{
             replaceFragment(PostReportFragment())
         }
