@@ -1,5 +1,6 @@
 package com.example.projekpmob_bagianmain
 
+import android.content.Context
 import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import android.content.SharedPreferences
 
 class editAccount : Fragment(){
     private lateinit var auth: FirebaseAuth
@@ -86,6 +88,7 @@ class editAccount : Fragment(){
                 Toast.makeText(activity, "Please enter either a new username or a new password.", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
     private fun updateUsername(email: String, newUsername: String) {
         val userRef = firestore.collection("users").whereEqualTo("email", email)
