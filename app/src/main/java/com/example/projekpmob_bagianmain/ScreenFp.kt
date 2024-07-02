@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.projekpmob_bagianmain
 
 import android.content.Intent
@@ -35,34 +37,38 @@ class ScreenFp : AppCompatActivity() {
         resetButton.setOnClickListener {
             val email = reset_email.text.toString().trim()
 
-            sendPasswordResetEmail(email)
+            if (email.isEmpty()) {
+                Toast.makeText(this, "Masukkan alamat email Anda", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            auth.fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        if (task.result!!.signInMethods!!.isNotEmpty()) {
+                            // Email terdaftar, kirim link reset password
+                            sendPasswordResetEmail(email)
+                        } else {
+                            // Email tidak terdaftar
+                            Toast.makeText(this, "Email tidak terdaftar", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        // Terjadi error
+                        Toast.makeText(this, "Terjadi kesalahan: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }
         }
     }
 
     private fun sendPasswordResetEmail(email: String) {
-        if (email.isNotEmpty()) {
-            userRepository.checkEmailUniqueness(email) { isUnique ->
-                if (isUnique) {
-                    auth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                // Tampilkan pesan bahwa email telah dikirim
-                                toast("Link reset password telah dikirim ke email.")
-                                val intent = Intent(this, ScreenLogin::class.java)
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                // Tampilkan pesan kesalahan
-                                toast("Gagal mengirim link reset password.")
-                            }
-                        }
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Email reset password telah dikirim", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Email tidak valid", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Terjadi kesalahan: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
-        } else {
-            toast("Masukkan email Anda.")
-        }
     }
 
     private fun toast(message: String) {
