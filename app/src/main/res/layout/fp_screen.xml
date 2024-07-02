@@ -70,7 +70,7 @@
         android:layout_width="328dp"
         android:layout_height="53dp"
         android:backgroundTint="@color/login_button"
-        android:text="Sign up"
+        android:text="Send"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@id/login_button"

@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.example.projekpmob_bagianmain
 
 import android.content.Intent
@@ -42,21 +40,7 @@ class ScreenFp : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            auth.fetchSignInMethodsForEmail(email)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        if (task.result!!.signInMethods!!.isNotEmpty()) {
-                            // Email terdaftar, kirim link reset password
-                            sendPasswordResetEmail(email)
-                        } else {
-                            // Email tidak terdaftar
-                            Toast.makeText(this, "Email tidak terdaftar", Toast.LENGTH_SHORT).show()
-                        }
-                    } else {
-                        // Terjadi error
-                        Toast.makeText(this, "Terjadi kesalahan: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
-                    }
-                }
+            sendPasswordResetEmail(email)
         }
     }
 
