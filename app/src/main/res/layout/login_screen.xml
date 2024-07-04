@@ -21,9 +21,10 @@
 
     <EditText
         android:id="@+id/email_address"
-        android:layout_width="357dp"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginLeft="24sp"
+        android:layout_marginRight="24sp"
         android:layout_marginTop="62sp"
         android:width="327sp"
         android:height="64dp"
@@ -35,9 +36,10 @@
         app:layout_constraintTop_toBottomOf="@+id/welcome_message" />
     <EditText
         android:id="@+id/password_field"
-        android:layout_width="357dp"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginLeft="24sp"
+        android:layout_marginRight="24sp"
         android:layout_marginTop="16dp"
         android:inputType="textPassword"
         android:width="327sp"
@@ -63,9 +65,10 @@
 
     <ImageView
         android:id="@+id/login_button"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/buttonlogin"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,9 +77,10 @@
 
     <Button
         android:id="@+id/logintext"
-        android:layout_width="328dp"
+        android:layout_width="match_parent"
         android:layout_height="53dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginLeft="28dp"
         android:backgroundTint="@color/login_button"
         android:text="Login"
         android:textColor="@color/white"

@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import android.Manifest
+import android.content.Context
 import android.location.Location
 import android.widget.Button
 import android.widget.RadioButton
@@ -78,6 +79,9 @@ class PostReportFragment : Fragment(){
         val victim = view?.findViewById<RadioButton>(R.id.Victim)
         var victimChecked = victim
 
+        val sharedPreferences = requireContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val emailShared = sharedPreferences.getString("EMAIL", null)
+
 //        if (victim != null && victim.isChecked) {
 //            isiReport = "A Victim Has Reported an Incident".toString()
 //        }
@@ -106,7 +110,7 @@ class PostReportFragment : Fragment(){
         val status = "dilaporkan"
 
         // Create the Report object
-        val report = Report(headerReport, isiReport, "Admin", timeStamp, status, idGenerate, latitude, longitude)
+        val report = Report(headerReport, isiReport, emailShared.toString(), timeStamp, status, idGenerate, latitude, longitude)
         firestore.collection("report").document(idGenerate)
             .set(report)
             .addOnSuccessListener {

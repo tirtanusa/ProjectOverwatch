@@ -41,9 +41,10 @@
 
     <EditText
         android:id="@+id/email_reset"
-        android:layout_width="357dp"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginLeft="24sp"
+        android:layout_marginRight="24sp"
         android:layout_marginTop="16sp"
         android:width="327sp"
         android:height="64dp"
@@ -56,9 +57,10 @@
 
     <ImageView
         android:id="@+id/login_button"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/buttonlogin"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,8 +69,10 @@
 
     <Button
         android:id="@+id/reset_label"
-        android:layout_width="328dp"
-        android:layout_height="53dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginLeft="24sp"
+        android:layout_marginRight="24sp"
         android:backgroundTint="@color/login_button"
         android:text="Sign up"
         android:textColor="@color/white"
