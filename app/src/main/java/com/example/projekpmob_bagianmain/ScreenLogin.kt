@@ -106,7 +106,7 @@ class ScreenLogin : AppCompatActivity() {
                                 .addOnSuccessListener { documents ->
                                     if (!documents.isEmpty) {
                                         // Simpan status login
-                                        editor.putBoolean("isLoggedIn", true) // misalnya, Anda bisa menggunakan token atau data yang sesuai
+                                        editor.putBoolean("isLoggedIn", true)
                                         editor.apply()
                                         val document = documents.documents[0]
                                         val username = document.getString("username") ?: "User"

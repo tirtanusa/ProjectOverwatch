@@ -35,34 +35,24 @@ class ScreenFp : AppCompatActivity() {
         resetButton.setOnClickListener {
             val email = reset_email.text.toString().trim()
 
+            if (email.isEmpty()) {
+                Toast.makeText(this, "Masukkan alamat email Anda", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             sendPasswordResetEmail(email)
         }
     }
 
     private fun sendPasswordResetEmail(email: String) {
-        if (email.isNotEmpty()) {
-            userRepository.checkEmailUniqueness(email) { isUnique ->
-                if (isUnique) {
-                    auth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                // Tampilkan pesan bahwa email telah dikirim
-                                toast("Link reset password telah dikirim ke email.")
-                                val intent = Intent(this, ScreenLogin::class.java)
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                // Tampilkan pesan kesalahan
-                                toast("Gagal mengirim link reset password.")
-                            }
-                        }
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Email reset password telah dikirim", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Email tidak valid", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Terjadi kesalahan: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
-        } else {
-            toast("Masukkan email Anda.")
-        }
     }
 
     private fun toast(message: String) {
